@@ -164,8 +164,10 @@ void loop() {
     // check if enough time has passed to consider it a switch press
     if ((millis() - debouncetimer) > DEBOUNCE) {
       button1_state=1;
-      if(state != STATE_BUSY) {
+      if(state == STATE_AVAILABLE) {
         setBUSY();
+      } else if(state == STATE_BUSY) {
+        setMEETING();
       } else {
         setAVAILABLE();
       }
